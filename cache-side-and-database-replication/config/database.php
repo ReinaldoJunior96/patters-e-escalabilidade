@@ -3,7 +3,6 @@
 use Illuminate\Support\Str;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -30,7 +29,6 @@ return [
     */
 
     'connections' => [
-
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
@@ -60,6 +58,16 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            'read' => [
+                'host' => [env('DB_SLAVE1_HOST', 'db-slave1'), env('DB_SLAVE2_HOST', 'db-slave2')],
+                'username' => env('DB_SLAVE_USERNAME', env('DB_USERNAME', 'root')),
+                'password' => env('DB_SLAVE_PASSWORD', env('DB_PASSWORD', 'root')),
+            ],
+            'write' => [
+                'host' => env('DB_MASTER_HOST', 'db-master'),
+                'username' => env('DB_MASTER_USERNAME', env('DB_USERNAME', 'root')),
+                'password' => env('DB_MASTER_PASSWORD', env('DB_PASSWORD', 'root')),
+            ],
         ],
 
         'mariadb' => [
@@ -111,7 +119,6 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
-
     ],
 
     /*
@@ -142,12 +149,11 @@ return [
     */
 
     'redis' => [
-
         'client' => env('REDIS_CLIENT', 'phpredis'),
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 
@@ -168,7 +174,5 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
-
     ],
-
 ];
