@@ -21,10 +21,10 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Definir o diretório de trabalho
-WORKDIR /var/www/cache-side-and-database-replication
+WORKDIR /var/www
 
 # Copiar o código da aplicação Laravel
-COPY cache-side-and-database-replication/ .
+COPY . .
 
 # Instalar dependências do Laravel
 RUN composer install --no-dev --optimize-autoloader
