@@ -1,0 +1,15 @@
+{
+    "name": "reinaldojunior/decorator-pattern",
+    "autoload": {
+        "psr-4": {
+            "Reinaldojunior\\DecoratorPattern\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Reinaldo Júnior",
+            "email": "33222779+ReinaldoJunior96@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
