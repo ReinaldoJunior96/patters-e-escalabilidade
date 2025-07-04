@@ -20,7 +20,7 @@ class ReplicationTest extends TestCase
       sleep(2);
 
       // Leitura padrão (Laravel já faz o balanceamento para os slaves)
-      $usersFromSlave = \DB::table('users')->get();
+      $usersFromSlave = DB::table('users')->get();
 
       $this->assertGreaterThanOrEqual(5, $usersFromSlave->count(), 'Os usuários não foram replicados para o slave.');
    }
